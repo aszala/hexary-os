@@ -38,5 +38,6 @@ dirs: | $(BIN)
 	mkdir -p $@
 
 clean:
-	rm -rf $(BIN) $(BOOT)
+	rm -rf $(BIN)
+	rm $(KERNAL_BIN)
 
