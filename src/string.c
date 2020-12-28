@@ -1,7 +1,8 @@
-#include "string.h"
+#include "include/string.h"
+#include "include/types.h"
 
 uint16 strlength(string ch) {
-	unint16 i = 0;
+	uint16 i = 0;
 
 	while (ch[i++]);
 
