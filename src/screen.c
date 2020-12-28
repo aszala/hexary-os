@@ -8,7 +8,7 @@ const uint8 sw = 80, sh = 25, sd = 2;
 
 void clearLine(uint8 from, uint8 to) {
 	uint16 i = sw * from * sd;
-	char* vidmem=(char*)0xb8000;
+	char* vidmem = (char*)0xb8000;
 	
 	for(i;i<(sw*(to+1)*sd);i++) {
 		vidmem[i] = 0x0;
@@ -33,7 +33,7 @@ void clearScreen() {
 }
 
 void scrollUp(uint8 lineNumber) {
-	char* vidmem = (char*)0x0b8000;
+	char* vidmem = (char*)0xb8000;
 
 	uint16 i = 0;
 	
@@ -60,7 +60,7 @@ void newLineCheck() {
 }
 
 void printch(char c) {
-	char* vidmem = (char*)0x0b0000;
+	char* vidmem = (char*)0xb8000;
 
 	switch (c) {
 		case (0x08):
