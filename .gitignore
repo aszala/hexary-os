@@ -1,4 +1,4 @@
-hexary/
+*.bin
 
 # Prerequisites
 *.d
