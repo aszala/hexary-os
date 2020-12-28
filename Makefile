@@ -23,6 +23,7 @@ ASM_KERNAL_BIN = $(BIN)kasm.o
 C_KERNAL_BIN = $(BIN)kc.o
 
 KERNAL_BIN = $(BOOT)kernal.bin
+KERNAL_ISO = hexary.iso
 
 $(BIN)%.o: | $(BIN)
 	$(ASM) $(ASM_FLAGS) $(ASM_KERNAL) -o $(ASM_KERNAL_BIN)
@@ -32,9 +33,10 @@ $(BOOT)%.bin: $(ASM_KERNAL_BIN) $(C_KERNAL_BIN)
 	$(LINK) $(LINK_FLAGS) $(LINK_FILE) -o $(KERNAL_BIN) $(ASM_KERNAL_BIN) $(C_KERNAL_BIN)
 
 iso: | $(KERNAL_BIN)
-	grub-mkrescue -o hexary.iso $(ROOT)
+	grub-mkrescue -o $(KERNAL_ISO) $(ROOT)
 
-dirs: | $(BIN)
+run: | $(KERNAL_BIN)
+	qemu-system-i386 -kernel $(KERNAL_BIN)
 
 %/:
 	mkdir -p $@
