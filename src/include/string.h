@@ -3,6 +3,7 @@
 
 #include "types.h"
 
-uint16 strlength(string ch);
+uint16 strlength(string s);
+uint8 strEquals(string s1, string s2);
 
 #endif
