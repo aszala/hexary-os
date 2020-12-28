@@ -1,7 +1,9 @@
+#include "include/screen.h"
+
 int main() {
-	char* vidmem = (char*)0xb8000;
-	vidmem[0] = 'H';
-	vidmem[1] = 0x04;
+	clearScreen();
+	print("This is a test\n");
+	print("This is a test 2");
 
 	return 0;
 }
