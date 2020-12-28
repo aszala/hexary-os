@@ -1,7 +1,9 @@
+.PHONY: iso dirs clean
+
 NAME = hexary
 
 CC = gcc
-CC_flags = -m32 -c -g -Wall
+CC_FLAGS = -m32 -c
 
 ASM = nasm
 ASM_FLAGS = -f elf32
