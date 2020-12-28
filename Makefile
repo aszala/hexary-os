@@ -1,4 +1,4 @@
-.PHONY: iso dirs clean
+.PHONY: iso run clean boot
 
 NAME = hexary
 
@@ -16,26 +16,27 @@ BOOT = $(ROOT)boot/
 BIN = bin/
 
 ASM_KERNAL = kernal.asm
-C_KERNAL = kernal.c
 LINK_FILE = link.ld
 
-ASM_KERNAL_BIN = $(BIN)kasm.o
-C_KERNAL_BIN = $(BIN)kc.o
+OBJ_FILES = $(BIN)kernal.o $(BIN)test.o
+SRC_FILES = $(wildcard *.c)
 
 KERNAL_BIN = $(BOOT)kernal.bin
 KERNAL_ISO = hexary.iso
 
-$(BIN)%.o: | $(BIN)
-	$(ASM) $(ASM_FLAGS) $(ASM_KERNAL) -o $(ASM_KERNAL_BIN)
-	$(CC) $(CC_FLAGS) $(C_KERNAL) -o $(C_KERNAL_BIN)
+$(BIN)%.o: %.c $(BIN)
+	$(CC) $(CC_FLAGS) -o $@ $<
 
-$(BOOT)%.bin: $(ASM_KERNAL_BIN) $(C_KERNAL_BIN)
-	$(LINK) $(LINK_FLAGS) $(LINK_FILE) -o $(KERNAL_BIN) $(ASM_KERNAL_BIN) $(C_KERNAL_BIN)
+$(BOOT)%.bin: $(BIN) $(OBJ_FILES)
+	$(ASM) $(ASM_FLAGS) $(ASM_KERNAL) -o $(BIN)kasm.o
+	$(LINK) $(LINK_FLAGS) $(LINK_FILE) -o $(KERNAL_BIN) $(OBJ_FILES) $(BIN)kasm.o
 
-iso: | $(KERNAL_BIN)
+boot: $(KERNAL_BIN)
+
+iso: $(KERNAL_BIN)
 	grub-mkrescue -o $(KERNAL_ISO) $(ROOT)
 
-run: | $(KERNAL_BIN)
+run: $(KERNAL_BIN)
 	qemu-system-i386 -kernel $(KERNAL_BIN)
 
 %/:
