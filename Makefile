@@ -14,22 +14,24 @@ LINK_FLAGS = -m elf_i386 -T
 ROOT = $(NAME)/
 BOOT = $(ROOT)boot/
 BIN = bin/
+SRC = src/
 
 ASM_KERNAL = kernal.asm
+ASM_BIN = $(BIN)kasm.o
 LINK_FILE = link.ld
 
-OBJ_FILES = $(BIN)kernal.o $(BIN)test.o
-SRC_FILES = $(wildcard *.c)
+SRC_FILES = $(wildcard $(SRC)*.c)
+OBJ_FILES = $(patsubst $(SRC)%.c, $(BIN)%.o, $(SRC_FILES))
 
 KERNAL_BIN = $(BOOT)kernal.bin
 KERNAL_ISO = hexary.iso
 
-$(BIN)%.o: %.c $(BIN)
+$(BIN)%.o: $(SRC)%.c $(BIN)
 	$(CC) $(CC_FLAGS) -o $@ $<
 
 $(BOOT)%.bin: $(BIN) $(OBJ_FILES)
-	$(ASM) $(ASM_FLAGS) $(ASM_KERNAL) -o $(BIN)kasm.o
-	$(LINK) $(LINK_FLAGS) $(LINK_FILE) -o $(KERNAL_BIN) $(OBJ_FILES) $(BIN)kasm.o
+	$(ASM) $(ASM_FLAGS) $(ASM_KERNAL) -o $(ASM_BIN)
+	$(LINK) $(LINK_FLAGS) $(LINK_FILE) -o $(KERNAL_BIN) $(OBJ_FILES) $(ASM_BIN)
 
 boot: $(KERNAL_BIN)
 
