@@ -3,7 +3,7 @@
 NAME = hexary
 
 CC = gcc
-CC_FLAGS = -m32 -c
+CC_FLAGS = -m32 -c -ffreestanding
 
 ASM = nasm
 ASM_FLAGS = -f elf32
