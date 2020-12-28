@@ -1,10 +1,10 @@
 #include "include/string.h"
 #include "include/types.h"
 
-uint16 strlength(string s) {
+uint16 strLength(string s) {
 	uint16 i = 0;
 
-	while (ch[i++]);
+	while (s[i++]);
 
 	return i;
 }
@@ -18,7 +18,7 @@ uint8 strEquals(string s1, string s2) {
 	} else {
 		uint16 i = 0;
 
-		for (i;i<=sizei++) {
+		for (i;i<=s1Size;i++) {
 			if (s1[i] != s2[i]) {
 				return 0;
 			}

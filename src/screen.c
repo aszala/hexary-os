@@ -99,7 +99,7 @@ void printch(char c) {
 void print(string ch) {
 	uint16 i = 0;
 
-	for (i;i<strlength(ch);i++) {
+	for (i;i<strLength(ch);i++) {
 		printch(ch[i]);
 	}
 }

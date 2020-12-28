@@ -1,6 +1,7 @@
 #include "include/screen.h"
 #include "include/types.h"
 #include "include/keyboard.h"
+#include "include/string.h"
 
 int main() {
 	clearScreen();
@@ -16,7 +17,9 @@ int main() {
 		if (strEquals(cmd, "clear")) {
 			clearScreen();
 		} else {
-			print("\n" + cmd + ": command not found");
+			print("\n");
+		       	print(cmd);
+			print(": command not found");
 		}
 	}
 
