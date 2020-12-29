@@ -100,7 +100,7 @@ void printch(char c) {
 
 void print(string s) {
 	uint16 i = 0;
-	unint16 length = strLength(s)-1;
+	uint16 length = strLength(s)-1;
 
 	for (i;i<length;i++) {
 		printch(s[i]);
