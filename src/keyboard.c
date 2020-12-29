@@ -33,7 +33,7 @@ string readInput() {
 		}
 	}
 
-	buffString[i] = 0;
+	buffString[--i] = 0;
 
 	return buffString;
 }
