@@ -3,7 +3,7 @@
 #include "include/screen.h"
 #include "include/system.h"
 
-const char* inputMap = "  1234567890-=\b qwertyuiop[] asdfghjkl;    zxcvbnm,././  ";
+const char* inputMap = "  1234567890-=\b qwertyuiop[]asdfghjkl;    zxcvbnm,././  ";
 
 string readInput() {
 	char buff;
