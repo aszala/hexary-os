@@ -10,7 +10,7 @@ void clearLine(uint8 from, uint8 to) {
 	uint16 i = sw * from * sd;
 	char* vidmem = (char*)0xb8000;
 	
-	for(i;i<(sw*(to+1)*sd);i++) {
+	for(i;i<(sw*to*sd);i++) {
 		vidmem[i] = 0x0;
 	}
 }
@@ -37,6 +37,8 @@ void scrollUp(uint8 lineNumber) {
 
 	uint16 i = 0;
 	
+	clearLine(0, lineNumber-1);
+
 	for (i;i<sw*(sh-1)*2;i++) {
 		vidmem[i] = vidmem[i+sw*2*lineNumber];
 	}
@@ -70,9 +72,9 @@ void printch(char c) {
 				vidmem[(cursorY * sw + cursorX) * sd] = 0x00;
 			}
 			break;
-		case (0x09):
+		/*case (0x09):
 			cursorX = (cursorX + 8) & ~(8 - 1);
-			break;
+			break;*/
 		case ('\r'):
 			cursorX = 0;
 			break;
@@ -96,11 +98,12 @@ void printch(char c) {
 	updateCursor();
 }
 
-void print(string ch) {
+void print(string s) {
 	uint16 i = 0;
+	unint16 length = strLength(s)-1;
 
-	for (i;i<strLength(ch);i++) {
-		printch(ch[i]);
+	for (i;i<length;i++) {
+		printch(s[i]);
 	}
 }
 
