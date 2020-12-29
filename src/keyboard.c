@@ -2,8 +2,9 @@
 #include "include/types.h"
 #include "include/screen.h"
 #include "include/system.h"
+#include "include/string.h"
 
-const char* inputMap = "  1234567890-=\b qwertyuiop[]  asdfghjkl;    zxcvbnm,././  ";
+char* inputMap = "  1234567890-=\b qwertyuiop[]  asdfghjkl;    zxcvbnm,././  ";
 
 string readInput() {
 	char buff;
@@ -11,6 +12,8 @@ string readInput() {
 
 	uint8 i = 0;
 	uint8 reading = 1;
+	
+	uint16 inputMapSize = strLength(inputMap);
 
 	while (reading) {
 		if (inportb(0x64) & 0x1) {
@@ -21,7 +24,7 @@ string readInput() {
 			} else if (input == 28) {
 				i++;
 				reading = 0;
-			} else {
+			} else if (input < inputMapSize) {
 				char c = inputMap[input];
 				printch(c);
 				buffString[i] = c;
