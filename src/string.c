@@ -15,13 +15,16 @@ uint8 strEquals(string s1, string s2) {
 	uint16 s2Size = strLength(s2);
 
 	if (s1Size != s2Size) {
-		print("I am appple");
 		return 0;
 	} else {
 		uint16 i = 0;
 
 		for (i;i<=s1Size;i++) {
 			if (s1[i] != s2[i]) {
+				print("S1:");
+				printch(s1[i]);
+				print("; S2");
+				printch(s2[i]);
 				return 0;
 			}
 		}
