@@ -1,5 +1,6 @@
 #include "include/string.h"
 #include "include/types.h"
+#include "include/screen.h"
 
 uint16 strLength(string s) {
 	uint16 i = 0;
@@ -14,6 +15,7 @@ uint8 strEquals(string s1, string s2) {
 	uint16 s2Size = strLength(s2);
 
 	if (s1Size != s2Size) {
+		print("I am appple");
 		return 0;
 	} else {
 		uint16 i = 0;
