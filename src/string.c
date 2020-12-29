@@ -21,12 +21,12 @@ uint8 strEquals(string s1, string s2) {
 
 		for (i;i<=s1Size;i++) {
 			if (s1[i] != s2[i]) {
-				print("S1:");
-				printch(s1[i]);
-				print("; S2");
-				printch(s2[i]);
 				return 0;
 			}
+			print("S1:");
+			printch(s1[i]);
+			print("; S2");
+			printch(s2[i]);
 		}
 	}
 
