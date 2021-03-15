@@ -1,2 +1,2 @@
-# operating-system
-Custom Built OS
+# Hexary OS
+Custom OS for Testing
